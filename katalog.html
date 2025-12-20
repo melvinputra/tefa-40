@@ -1,0 +1,406 @@
+<html lang="id" class="scroll-smooth"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Produk - TEFA SMKN 40 Jakarta</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body {
+font-family: 'Inter', sans-serif;
+background-color: #fafafa;
+}
+/* Technical Grid Background */
+.bg-grid-pattern {
+background-image: linear-gradient(to right, #e5e5e5 1px, transparent 1px),
+linear-gradient(to bottom, #e5e5e5 1px, transparent 1px);
+background-size: 40px 40px;
+}
+/* Custom Scrollbar for Filters */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+/* Animation for Modal */
+.modal-enter {
+    opacity: 0;
+    transform: scale(0.95);
+}
+.modal-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms ease-out, transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-exit {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+</style>
+</head>
+<body class="bg-grid-pattern text-slate-800 antialiased selection:bg-orange-500 selection:text-white overflow-x-hidden">
+
+    <!-- Floating Navbar (Consistent) -->
+    <div class="fixed top-6 left-0 right-0 z-40 flex justify-center px-4">
+        <nav class="bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-full shadow-xl shadow-slate-200/20 py-3 px-6 md:px-8 flex items-center justify-between gap-8 max-w-5xl w-full transition-all duration-300">
+            <!-- Logo Area -->
+            <a href="index.html" class="flex items-center gap-2.5 group">
+                <div class="relative w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold tracking-tighter overflow-hidden">
+                    <span class="relative z-10">40</span>
+                    <div class="absolute bottom-0 left-0 right-0 h-1 flex">
+                        <div class="w-1/4 bg-[#00FFFF]"></div>
+                        <div class="w-1/4 bg-[#FF00FF]"></div>
+                        <div class="w-1/4 bg-[#FFFF00]"></div>
+                        <div class="w-1/4 bg-[#000000]"></div>
+                    </div>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xs font-bold tracking-wide text-slate-900">TEFA CREATIVE</span>
+                    <span class="text-[10px] text-slate-500 font-medium tracking-widest uppercase">Production House</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-1 bg-slate-100/50 p-1 rounded-full">
+                <a href="index.html" class="px-4 py-1.5 text-xs font-medium text-slate-600 hover:bg-white hover:shadow-sm hover:text-slate-900 rounded-full transition-all">Home</a>
+                <a href="index.html#services" class="px-4 py-1.5 text-xs font-medium text-slate-600 hover:bg-white hover:shadow-sm hover:text-slate-900 rounded-full transition-all">Layanan</a>
+                <a href="katalog.html" class="px-4 py-1.5 text-xs font-medium text-slate-900 bg-white shadow-sm rounded-full transition-all">Katalog</a>
+                <a href="index.html#about" class="px-4 py-1.5 text-xs font-medium text-slate-600 hover:bg-white hover:shadow-sm hover:text-slate-900 rounded-full transition-all">Tentang</a>
+            </div>
+
+            <!-- Action -->
+            <div class="flex items-center gap-3">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Cari produk..." class="pl-8 pr-4 py-1.5 bg-slate-100 rounded-full text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:bg-white transition-all w-32 focus:w-48 border border-transparent focus:border-orange-200">
+                    <iconify-icon icon="lucide:search" class="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" width="12"></iconify-icon>
+                </div>
+                <button class="md:hidden p-2 text-slate-900 bg-slate-100 rounded-full">
+                    <iconify-icon icon="lucide:menu" width="20"></iconify-icon>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page Header -->
+    <section class="pt-40 pb-12 px-6 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto text-center">
+            <span class="text-orange-600 font-bold tracking-widest text-xs uppercase mb-3 block">Katalog Lengkap</span>
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-slate-900 mb-4">Semua Produk</h1>
+            <p class="text-slate-500 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+                Jelajahi seluruh layanan dan produk percetakan digital TEFA Forty. Kualitas industri dengan sentuhan kreativitas siswa.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filters & Grid -->
+    <section class="py-12 px-6 min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Sticky Filter Category -->
+            <div class="sticky top-24 z-30 bg-[#fafafa]/95 backdrop-blur-sm py-4 mb-10 -mx-6 px-6 md:mx-0 md:px-0">
+                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2 md:justify-center md:flex-wrap" id="categoryFilters">
+                    <!-- Filter Item: Active -->
+                    <button class="filter-btn active shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-slate-900 text-white border border-slate-900 transition-all hover:shadow-lg" data-filter="all">
+                        Semua
+                    </button>
+                    <!-- Filter Item: Inactive -->
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="tshirt">
+                        T-Shirt
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="mug">
+                        Mug
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="tumbler">
+                        Tumbler
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="sticker">
+                        Sticker
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="jersey">
+                        Jersey
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="print">
+                        Printing
+                    </button>
+                    <button class="filter-btn shrink-0 px-5 py-2 rounded-full text-xs font-medium bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all" data-filter="design">
+                        Desain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10" id="productGrid">
+                
+                <!-- Product 1: T-Shirt -->
+                <div class="group cursor-pointer product-card" data-category="tshirt" onclick="openProductModal('Kaos Custom DTF', 'Cotton Combed 30s premium dengan sablon DTF (Direct Transfer Film) resolusi tinggi. Tahan cuci dan warna tajam.', 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 85.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="T-Shirt" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-slate-900 shadow-sm">Best Seller</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Kaos Custom DTF</h3>
+                    <p class="text-sm text-slate-500 mt-1">Cotton Combed 30s • Full Color</p>
+                </div>
+
+                <!-- Product 2: Mug -->
+                <div class="group cursor-pointer product-card" data-category="mug" onclick="openProductModal('Mug Keramik Standard', 'Mug keramik putih standar SNI dengan coating berkualitas. Cocok untuk souvenir pernikahan atau kantor.', 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 25.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mug" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Mug Keramik</h3>
+                    <p class="text-sm text-slate-500 mt-1">Sublimasi • Tahan Panas</p>
+                </div>
+
+                <!-- Product 3: Sticker -->
+                <div class="group cursor-pointer product-card" data-category="sticker" onclick="openProductModal('Sticker Pack A3+', 'Sticker Vinyl atau Kromo ukuran A3+ dengan cutting kiss-cut sesuai pola. Tahan air dan cuaca.', 'https://images.unsplash.com/photo-1626218174358-77b7f9500053?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 15.000/lbr')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Sticker" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-3 left-3 bg-slate-900 text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider shadow-sm">Promo</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Sticker Pack A3+</h3>
+                    <p class="text-sm text-slate-500 mt-1">Vinyl / Kromo • Kiss Cut</p>
+                </div>
+
+                <!-- Product 4: Tumbler -->
+                <div class="group cursor-pointer product-card" data-category="tumbler" onclick="openProductModal('Tumbler Stainless UV', 'Tumbler stainless steel tahan panas/dingin hingga 8 jam. Dicetak menggunakan UV Print timbul.', 'https://images.unsplash.com/photo-1602143407151-01114192003f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 75.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Tumbler" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Tumbler Stainless UV</h3>
+                    <p class="text-sm text-slate-500 mt-1">Print UV • Tahan 8 Jam</p>
+                </div>
+
+                <!-- Product 5: Jersey -->
+                <div class="group cursor-pointer product-card" data-category="jersey" onclick="openProductModal('Jersey Full Sublim', 'Jersey olahraga bahan Dryfit premium. Full printing sublimasi, warna tidak akan luntur.', 'https://images.unsplash.com/photo-1577212017184-80e68a2139a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 120.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" alt="Jersey" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Jersey Full Sublim</h3>
+                    <p class="text-sm text-slate-500 mt-1">Dryfit Milano • Custom Name</p>
+                </div>
+
+                <!-- Product 6: Print (Banner) -->
+                <div class="group cursor-pointer product-card" data-category="print" onclick="openProductModal('X-Banner & Stand', 'X-Banner ukuran 60x160cm bahan Albatros/Flexi. Termasuk tiang penyangga fiber kokoh.', 'https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 90.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="X-Banner" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">X-Banner Set</h3>
+                    <p class="text-sm text-slate-500 mt-1">Indoor / Outdoor • Include Stand</p>
+                </div>
+
+                <!-- Product 7: Design -->
+                <div class="group cursor-pointer product-card" data-category="design" onclick="openProductModal('Jasa Desain Logo', 'Layanan pembuatan logo profesional. 3 Opsi desain, revisi minor 3x, file master lengkap.', 'https://images.unsplash.com/photo-1626785774573-4b799314346d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 250.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" alt="Design" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Jasa Desain Logo</h3>
+                    <p class="text-sm text-slate-500 mt-1">Branding Identity • Vector File</p>
+                </div>
+
+                <!-- Product 8: Goodie Bag -->
+                <div class="group cursor-pointer product-card" data-category="print" onclick="openProductModal('Goodie Bag Spunbond', 'Tas spunbond ramah lingkungan dengan sablon 1 warna. Cocok untuk event seminar.', 'https://images.unsplash.com/photo-1597484662317-9bd7bdda2907?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', 'Mulai Rp 5.000')">
+                    <div class="aspect-[1/1.1] rounded-2xl bg-slate-100 relative overflow-hidden mb-4 border border-slate-100">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" alt="Bag" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-slate-900 shadow-sm">Bulk Order</div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 leading-tight group-hover:text-orange-600 transition-colors">Goodie Bag Sablon</h3>
+                    <p class="text-sm text-slate-500 mt-1">Spunbond 75gsm • 1 Warna</p>
+                </div>
+
+            </div>
+
+            <!-- Empty State (Hidden by default) -->
+            <div id="emptyState" class="hidden text-center py-20">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 text-slate-400 mb-4">
+                    <iconify-icon icon="lucide:package-open" width="32"></iconify-icon>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900">Produk tidak ditemukan</h3>
+                <p class="text-slate-500 text-sm">Coba pilih kategori lainnya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal (Overlay) -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <!-- Modal Panel -->
+                <div class="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl opacity-0 scale-95" id="modalPanel">
+                    
+                    <button type="button" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/80 hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-all" onclick="closeProductModal()">
+                        <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+                    </button>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <!-- Left: Image -->
+                        <div class="bg-slate-100 relative h-64 md:h-auto">
+                            <img id="modalImage" src="" alt="Product Detail" class="absolute inset-0 w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Right: Content -->
+                        <div class="p-8 md:p-10 flex flex-col h-full">
+                            <div class="flex-1">
+                                <span class="text-orange-600 font-bold tracking-wider text-[10px] uppercase mb-2 block">Detail Produk</span>
+                                <h3 class="text-3xl font-bold text-slate-900 mb-2 tracking-tight" id="modalTitle">Product Name</h3>
+                                <p class="text-lg font-semibold text-slate-900 mb-6" id="modalPrice">Rp 0</p>
+                                
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xs font-bold uppercase text-slate-400 mb-2">Deskripsi</h4>
+                                        <p class="text-slate-600 text-sm leading-relaxed" id="modalDesc">Description goes here.</p>
+                                    </div>
+                                    
+                                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                                        <div class="flex items-start gap-3">
+                                            <iconify-icon icon="lucide:info" class="text-slate-400 mt-0.5 shrink-0"></iconify-icon>
+                                            <p class="text-xs text-slate-500">Harga dapat berubah tergantung jumlah pesanan (Quantity) dan kompleksitas desain. Konsultasikan untuk penawaran terbaik.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 pt-8 border-t border-slate-100">
+                                <a id="whatsappBtn" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-500/25">
+                                    <iconify-icon icon="lucide:message-circle" width="18"></iconify-icon>
+                                    Pesan Sekarang via WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimal Footer (Consistent) -->
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+            <div class="max-w-sm">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-6 h-6 bg-slate-900 text-white flex items-center justify-center font-bold text-xs rounded">40</div>
+                    <span class="font-bold tracking-tight text-slate-900">TEFA SMKN 40 JKT</span>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                    Jl. Nanas II, Utan Kayu Utara, Matraman, Jakarta Timur.<br>
+                    Mencetak masa depan dengan kualitas dan integritas.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-900 hover:text-white transition-colors"><iconify-icon icon="lucide:instagram" width="16"></iconify-icon></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-slate-900 hover:text-white transition-colors"><iconify-icon icon="lucide:twitter" width="16"></iconify-icon></a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-4 text-sm">Sitemap</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="index.html" class="hover:text-orange-600">Beranda</a></li>
+                        <li><a href="index.html#about" class="hover:text-orange-600">Tentang</a></li>
+                        <li><a href="katalog.html" class="hover:text-orange-600">Katalog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-900 mb-4 text-sm">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="#" class="hover:text-orange-600">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-orange-600">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+            <p>© 2024 Teaching Factory SMKN 40 Jakarta.</p>
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span>System Operational</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        const emptyState = document.getElementById('emptyState');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-slate-900', 'text-white', 'border-slate-900', 'shadow-lg');
+                    b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                });
+                
+                // Add active class to clicked
+                btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                btn.classList.add('bg-slate-900', 'text-white', 'border-slate-900', 'shadow-lg');
+
+                const filterValue = btn.getAttribute('data-filter');
+                let hasVisibleItems = false;
+
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        hasVisibleItems = true;
+                        // Add fade in animation
+                        card.animate([
+                            { opacity: 0, transform: 'scale(0.95)' },
+                            { opacity: 1, transform: 'scale(1)' }
+                        ], { duration: 300, easing: 'ease-out' });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                if (!hasVisibleItems) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                }
+            });
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('productModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalPanel = document.getElementById('modalPanel');
+        
+        function openProductModal(title, desc, img, price) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalImage').src = img;
+            document.getElementById('modalPrice').innerText = price;
+            
+            // Generate WhatsApp Link
+            const message = `Halo Admin TEFA 40, saya tertarik dengan produk *${title}*. Mohon info lebih lanjut.`;
+            document.getElementById('whatsappBtn').href = `https://wa.me/6281234567890?text=${encodeURIComponent(message)}`;
+
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                modalBackdrop.classList.remove('opacity-0');
+                modalPanel.classList.remove('opacity-0', 'scale-95');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            modalBackdrop.classList.add('opacity-0');
+            modalPanel.classList.add('opacity-0', 'scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Close on backdrop click
+        modalBackdrop.addEventListener('click', closeProductModal);
+    </script>
+</body></html>
